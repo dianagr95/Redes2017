@@ -1,13 +1,14 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 import socket
+from Constants.Constants import *
 
 class MyApiClient:
     #TODO
     # creamos el socket
 	clientsocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 # ahora acemos que se conecte con el servidor
-	clientsocket.connect(('localhost',5000))
+	clientsocket.connect((LOCALHOST,CHAT_PORT))
  
 # este bucle hace que mientras este conectado  haga lo que pone en el interior
 while 1:
@@ -18,3 +19,9 @@ while 1:
         print 'servidor: %s' % newdata # y con esto lo escribimos en pantalla
 clientsocket.close() # si no esta conectado cerramos el socket
  
+
+"""********************
+Función para enviar el mensaje
+*********************"""
+def client_message(self, mensaje)
+	self.server.sendMessage_wrapper(texto)

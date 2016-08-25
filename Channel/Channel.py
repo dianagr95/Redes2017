@@ -1,6 +1,14 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import xmlrpclib
+import ApiClient
+import ApiServer
+from ApiServer import MyApiServer
+from ApiClient import MyApiClient
+from threading import Thread
+from Constants.Constants import *
+
 """**************************************************
 Las instancias de esta clase contendran los metodos
 necesarios para hacer uso de los metodos
@@ -20,12 +28,20 @@ class Channel:
                 representa el puerto de la instancia del contacto
     **************************************************"""
     def __init__(self, contact_ip = None, contact_port = None):
-        #TODO
+        self.contact_ip = contact_ip
+        self.my_port = my_port
+        self.contact_port = contact_port
+        self.server = MyApiServer(self.my_port)
+        api_server_thread = Thread(target = self.server.init_server)
+        api_server_thread.daemon=True
+        api_server_thread.start()
+        self.client = MyApiClient(self.contact_ip, self.contact_port)
 
-        """**************************************************
+
+    """**************************************************
     Metodo que se encarga de mandar texto al contacto con
     el cual se estableció la conexion
     **************************************************"""
     def send_text(self, text):
-        #TODO
+         return c.client_message(text);
 
